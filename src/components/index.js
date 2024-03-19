@@ -8,6 +8,7 @@ import Button from "./Button.jsx";
 import Input from "./Input.jsx";
 import Select from "./Select.jsx";
 import PostCard from "./PostCard.jsx";
+import RealTimeEditor from "./RealTimeEditor.jsx";
 
 // export
 export {
@@ -20,4 +21,5 @@ export {
    Input,
    Select,
    PostCard,
+   RealTimeEditor,
 };
