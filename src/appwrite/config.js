@@ -11,7 +11,7 @@ export class Service {
          .setEndpoint(conf.appwriteUrl)
          .setProject(conf.appwriteProjectId);
       this.databases = new Databases(this.client);
-      this.bucket = new Bucket(this.client);
+      this.bucket = new Storage(this.client);
    }
 
    async createPost({ title, slug, content, featuredImage, status, userId }) {
@@ -33,7 +33,7 @@ export class Service {
       }
    }
 
-   async updatePost(slug, { title, slug, content, featuredImage, status }) {
+   async updatePost(slug, { title, content, featuredImage, status }) {
       try {
          return await this.databases.updateDocument(
             conf.appwriteDatabaseId,
