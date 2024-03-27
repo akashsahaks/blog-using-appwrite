@@ -36,21 +36,26 @@ const Header = () => {
    ];
    return (
       <>
-         <header className="py-3 shadow bg-gray-500">
-            <Container>
+         <header className="py-3 shadow bg-myNavy">
+            <div className="w-full max-w-7xl mx-auto ps-4">
                <nav className="flex">
-                  <div className="mr-4">
+                  <div className="mx-4">
                      <Link to={"/"}>
-                        <Logo width="70px" />
+                        <Logo width="50px" />
                      </Link>
                   </div>
+                  <div className="py-2 m-1 font-mono text-xl font-semibold bg-myYellow rounded-full">
+                     <h2 className="px-3">Full Stack Blog</h2>
+                  </div>
+
                   <ul className="flex ml-auto">
                      {navItems.map((item) =>
                         item.active ? (
                            <li key={item.name}>
                               <button
                                  onClick={() => navigate(item.slug)}
-                                 className="inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                                 className="inline-block px-5 py-2 
+                                 font-mono text-2xl font-semibold duration-200 hover:bg-myYellow rounded-full"
                               >
                                  {item.name}
                               </button>
@@ -64,7 +69,7 @@ const Header = () => {
                      )}
                   </ul>
                </nav>
-            </Container>
+            </div>
          </header>
       </>
    );

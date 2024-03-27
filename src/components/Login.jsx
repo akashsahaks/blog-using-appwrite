@@ -33,7 +33,7 @@ const Login = () => {
       <>
          <div className="flex items-center justify-center w-full">
             <div
-               className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
+               className={`mx-auto w-full max-w-lg bg-myMint rounded-xl p-10 border border-black/10`}
             >
                <div className={`mb-2 flex justify-center`}>
                   <span className="inline-block w-full max-w-[100px]">
@@ -41,7 +41,7 @@ const Login = () => {
                   </span>
                </div>
                <h2 className="text-center text-2xl font-bold leading-tight">
-                  SignIn to your account!
+                  Login your account!
                </h2>
                <p className="mt-2 text-center text-base text-black/60">
                   Don't have any account?&nbsp;
@@ -49,7 +49,7 @@ const Login = () => {
                      to={"/signup"}
                      className="font-medium text-pretty transition-all duration-200 hover:underline"
                   >
-                     Sign Up
+                     Signup
                   </Link>
                </p>
 
@@ -85,6 +85,9 @@ const Login = () => {
                            },
                         })}
                      />
+                     <Button type="submit" className="w-full">
+                        Sign in
+                     </Button>
                   </div>
                </form>
             </div>

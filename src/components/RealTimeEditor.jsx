@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { Controller } from "react-hook-form";
 
 const RealTimeEditor = ({ name, control, label, defaultValue = "" }) => {
+   const apiKey = import.meta.env.VITE_TINY_MCE_EDITOR_API_KEY;
    return (
       <>
          <div className="w-full">
@@ -12,6 +12,7 @@ const RealTimeEditor = ({ name, control, label, defaultValue = "" }) => {
                control={control}
                render={({ field: { onChange } }) => (
                   <Editor
+                     apiKey={apiKey}
                      initialValue={defaultValue}
                      init={{
                         branding: false,

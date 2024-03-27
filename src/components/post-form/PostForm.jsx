@@ -10,16 +10,17 @@ const PostForm = ({ post }) => {
       useForm({
          defaultValues: {
             title: post?.title || "",
-            slug: post?.slug || "",
-            content: post?.slug || "",
+            slug: post?.$id || "",
+            content: post?.content || "",
             status: post?.status || "active",
          },
       });
 
    const navigate = useNavigate();
-   const userData = useSelector((state) => state.user.userData);
+   const userData = useSelector((state) => state.auth.userData);
 
    const submit = async (data) => {
+      console.log("data: ", data);
       if (post) {
          const file = data.image[0]
             ? await appwriteService.uploadFile(data.image[0])
@@ -58,7 +59,7 @@ const PostForm = ({ post }) => {
          return value
             .trim()
             .toLowerCase()
-            .replace(/^[a-zA-Z\d\s]+/g, "-")
+            .replace(/[^a-zA-Z\d\s]+/g, "-")
             .replace(/\s/g, "-");
       }
       return "";
@@ -67,13 +68,13 @@ const PostForm = ({ post }) => {
    useEffect(() => {
       const subscription = watch((value, { name }) => {
          if (name === "title") {
-            setValue(
-               "slug",
-               slugTransform(value.title, { shouldValidate: true })
-            );
+            setValue("slug", slugTransform(value.title), {
+               shouldValidate: true,
+            });
          }
       });
-   }, [watch, slugTransform]);
+      return () => subscription.unsubscribe();
+   }, [watch, slugTransform, setValue]);
 
    return (
       <>
@@ -106,7 +107,7 @@ const PostForm = ({ post }) => {
                   label={"Content :"}
                   name={"content"}
                   control={control}
-                  defaultValue={getValues}
+                  defaultValue={getValues("content")}
                />
             </div>
             <div className="w-1/3 px-2">
@@ -122,7 +123,6 @@ const PostForm = ({ post }) => {
 
                {post && (
                   <div className="w-full mb-4">
-                     {" "}
                      <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
@@ -143,7 +143,7 @@ const PostForm = ({ post }) => {
                <Button
                   type="submit"
                   bgColor={post ? "bg-green-50" : undefined}
-                  className="w-full"
+                  className="w-full bg-myNavy"
                >
                   {post ? "Update" : "Submit"}
                </Button>

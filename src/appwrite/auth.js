@@ -3,7 +3,8 @@ import { Client, Account, ID } from "appwrite";
 
 export class AuthService {
    client = new Client();
-   account = new Account();
+   account;
+
    constructor() {
       this.client
          .setEndpoint(conf.appwriteUrl)
@@ -42,8 +43,8 @@ export class AuthService {
       try {
          return await this.account.get();
       } catch (error) {
-         //  console.log("Appwrite service :: getCurrentUser :: error: ", error);
-         throw error;
+         console.log("Appwrite service :: getCurrentUser :: error: ", error);
+         // throw error;
       }
       return null;
    }
@@ -52,7 +53,8 @@ export class AuthService {
       try {
          return await this.account.deleteSessions();
       } catch (error) {
-         throw error;
+         // throw error;
+         console.log("Appwrite service :: logout :: error: ", error);
       }
    }
 }

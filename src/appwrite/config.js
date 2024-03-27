@@ -29,7 +29,8 @@ export class Service {
             }
          );
       } catch (error) {
-         console.log("Appwrite service :: createPost :: error ", error);
+         console.log("Appwrite service :: createPost() :: error ", error);
+         return false;
       }
    }
 
@@ -47,7 +48,8 @@ export class Service {
             }
          );
       } catch (error) {
-         console.log("Appwrite service :: updatePost :: error ", error);
+         console.log("Appwrite service :: updatePost() :: error ", error);
+         return false;
       }
    }
 
@@ -61,7 +63,7 @@ export class Service {
 
          return true;
       } catch (error) {
-         console.log("Appwrite service :: deletePost :: error ", error);
+         console.log("Appwrite service :: deletePost() :: error ", error);
          return false;
       }
    }
@@ -74,7 +76,8 @@ export class Service {
             slug
          );
       } catch (error) {
-         console.log("Appwrite service :: deletePost :: error ", error);
+         console.log("Appwrite service :: getPost() :: error ", error);
+         return false;
       }
    }
 
@@ -86,7 +89,8 @@ export class Service {
             queries
          );
       } catch (error) {
-         console.log("Appwrite service :: getPosts :: error ", error);
+         console.log("Appwrite service :: getPosts() :: error ", error);
+         return false;
       }
    }
 
@@ -99,7 +103,8 @@ export class Service {
             file
          );
       } catch (error) {
-         console.log("Appwrite service :: uploadFile :: error ", error);
+         console.log("Appwrite service :: uploadFile() :: error ", error);
+         return false;
       }
    }
 
@@ -115,12 +120,8 @@ export class Service {
    }
 
    // file preview
-   async getFilePreview(fileId) {
-      try {
-         return await this.bucket.getFilePreview(conf.appwriteBucket, fileId);
-      } catch (error) {
-         console.log("Appwrite service :: getFilePreview :: error ", error);
-      }
+   getFilePreview(fileId) {
+      return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
    }
 }
 
